@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
+import { AuthComponent } from './components/auth/auth.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.scss',
+  standalone: true,
+  imports: [CommonModule, AuthComponent, DashboardComponent, ToastComponent],
   templateUrl: './app.html',
+  styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('IAM-frontend');
+  authService = inject(AuthService);
 }
